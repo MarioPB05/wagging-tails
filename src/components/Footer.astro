@@ -1,0 +1,22 @@
+---
+import {Icon} from "astro-icon/components";
+
+const { fixedHeader = false } = Astro.props;
+const rootLink = fixedHeader ? "/" : "#";
+---
+
+<div class="w-full h-[220px] relative overflow-hidden text-white">
+    <a class="flex items-center gap-3 hover:!text-default cursor-secondary absolute top-1/2 left-1/2 transform -translate-x-1/2 bottom-0" href={rootLink}>
+        <Icon name="logo" class="size-10" />
+        <h1 class="font-bold text-2xl text-nowrap hidden sm:inline">Wagging Tails</h1>
+    </a>
+    <svg viewBox="0 0 1440 226" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 66.2732L40 82.8415C80 99.4097 160 132.546 240 127.058C320 121.156 400 77.6639 480 71.7614C560 66.2732 640 99.4097 720 93.9215C800 88.019 880 44.5273 960 60.7849C1040 77.6639 1120 154.292 1200 154.603C1280 154.292 1360 77.6639 1400 38.6248L1440 0V298.229H1400C1360 298.229 1280 298.229 1200 298.229C1120 298.229 1040 298.229 960 298.229C880 298.229 800 298.229 720 298.229C640 298.229 560 298.229 480 298.229C400 298.229 320 298.229 240 298.229C160 298.229 80 298.229 40 298.229H0V66.2732Z" fill="url(#paint0_linear_70_8)"/>
+        <defs>
+            <linearGradient id="paint0_linear_70_8" x1="0" y1="149.115" x2="1440" y2="149.115" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#FF6F61"/>
+                <stop offset="1" stop-color="#9470E1"/>
+            </linearGradient>
+        </defs>
+    </svg>
+</div>

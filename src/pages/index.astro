@@ -1,0 +1,52 @@
+---
+import Layout from "~/layouts/Layout.astro";
+import Splash from "~/components/Splash.astro";
+import Adopt from "~/components/Adopt.astro";
+import About from "../components/About.astro";
+import Contribution from "../components/Contribution.astro";
+
+import { Icon } from "astro-icon/components";
+---
+
+<Layout>
+    <Splash slot="splash" />
+    <Adopt />
+    <About />
+
+    <div class="border border-dashed border-gray-200 mt-16 mb-16"></div>
+
+    <Contribution />
+</Layout>
+
+<script data-astro-rerun type="module">
+    import { CountUp } from "/countUp.js";
+
+    function countStart() {
+        const $counters = document.querySelectorAll(".js-count-up"),
+            options = {
+                useEasing: true,
+                useGrouping: true,
+                separator: ",",
+                decimal: ".",
+            };
+
+        $counters.forEach((item) => {
+            const value = item.dataset.value;
+            const counter = new CountUp(item, value, options);
+            if (!counter.error) {
+                counter.start();
+            } else {
+                console.error(counter.error);
+            }
+        });
+    }
+
+    new Waypoint({
+        element: document.querySelector('#stats'),
+        handler: function () {
+            countStart();
+            this.destroy();
+        },
+        offset: '85%',
+    });
+</script>

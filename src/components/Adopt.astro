@@ -1,0 +1,102 @@
+---
+import { Image } from "astro:assets";
+import duendeImage from "~/assets/duende-min.png";
+import mayaImage from "~/assets/maya-min.png";
+import {Icon} from "astro-icon/components";
+---
+
+<section id="section-adopt" class="scroll-mt-24">
+    <h2 class="text-4xl text-secondary font-bold mb-3">Adopta Ahora</h2>
+    <p class="text-base">Descubre cómo puedes darle un hogar a un animal que lo necesita. ¡Cada adopción hace una gran diferencia!</p>
+
+    <div class="w-full flex flex-wrap gap-4 justify-between lg:grid xl:grid-cols-[auto,1fr,auto] 2xl:grid-cols-[auto,1fr,1fr,auto]">
+        <div data-aos="fade-right" data-aos-delay="300" data-link="adopt/duende" class="relative mt-20 col-span-2 mx-auto lg:mx-0 lg:me-10 lg:max-w-[800px] lg:min-w-[600px] cursor-secondary transition adopt-dog" style="--adopt-color: var(--color-primary);">
+            <div class="absolute bottom-0 -z-10 w-[250px] lg:w-full h-[250px] custom-rectangle bg-primary lg:bg-gradient-to-r from-primary to-secondary flex flex-col justify-center rounded-full lg:rounded-none lg:ps-72 text-white shadow">
+                <div class="hidden lg:flex flex-col gap-4 my-6 max-w-[250px]">
+                    <h3 class="text-3xl font-semibold mb-2 text-center">Duende</h3>
+                    <div class="flex items-center gap-2">
+                        <Icon name="birthdate" class="size-8" />
+                        24/12/2013 - 11 años
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <Icon name="location" class="size-8" />
+                        Sevilla, España
+                    </div>
+
+                    <a href="adopt/duende" class="flex items-center justify-center bg-white text-primary h-[40px] p-4 rounded-xl mt-2 w-full">Más Detalles</a>
+                </div>
+            </div>
+            <div class="absolute -bottom-4 left-1/2 transform -translate-x-1/2 lg:hidden bg-primary border-4 border-white px-6 py-2 rounded-xl text-white font-medium z-10">Duende</div>
+            <Image data-aos="zoom-in" data-aos-delay="450" class="h-full object-cover" src={duendeImage} loading="lazy" alt="Un perro" quality="max"/>
+        </div>
+
+        <div data-aos="fade-left" data-aos-delay="300" data-link="adopt/maya" class="relative mt-20 col-span-2 xl:col-span-1 2xl:col-span-2 min-w-[250px] mx-auto lg:mx-0 lg:me-10 xl:me-0 xl:justify-self-end 2xl:ms-10 2xl:flex 2xl:justify-end 2xl:max-w-[800px] 2xl:min-w-[600px] 2xl:w-full transition hover:scale-105 adopt-dog" style="--adopt-color: var(--color-secondary);">
+            <div class="absolute bottom-0 -z-10 w-[250px] lg:w-full h-[250px] custom-rectangle-2 bg-secondary lg:bg-gradient-to-r from-secondary to-primary xl:to-secondary 2xl:to-primary flex flex-col justify-center rounded-full lg:rounded-none lg:ps-72 xl:ps-0 2xl:ps-60 text-white shadow">
+                <div class="hidden lg:flex xl:hidden 2xl:flex flex-col gap-4 my-6 max-w-[250px]">
+                    <h3 class="text-3xl font-semibold mb-2 text-center">Maya</h3>
+                    <div class="flex items-center gap-2">
+                        <Icon name="birthdate" class="size-8" />
+                        07/09/2015 - 9 años
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <Icon name="location" class="size-8" />
+                        Sevilla, España
+                    </div>
+
+                    <button class="flex items-center justify-center bg-white text-primary h-[40px] p-4 rounded-xl mt-2 w-full">Más Detalles</button>
+                </div>
+            </div>
+            <div class="absolute -bottom-4 left-1/2 transform -translate-x-1/2 lg:hidden bg-secondary border-4 border-white px-6 py-2 rounded-xl text-white font-medium z-10">Maya</div>
+            <Image data-aos="zoom-in" data-aos-delay="450" class="h-full object-cover" src={mayaImage} loading="lazy" alt="Un perro" quality="max"/>
+        </div>
+    </div>
+</section>
+
+<style>
+    @media (max-width: 1024px) {
+        .adopt-dog:hover div:first-child {
+            box-shadow: 0 0 0 5px #fff, 0 0 0 10px var(--adopt-color);
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .custom-rectangle {
+            border-radius: 999px 500px 500px 999px !important;
+        }
+    }
+
+    @media (max-width: 1280px) and (min-width: 1025px) {
+        .custom-rectangle-2 {
+            border-radius: 999px 500px 500px 999px !important;
+        }
+    }
+
+    @media (min-width: 1536px) {
+        .custom-rectangle-2 {
+            border-radius: 500px 999px 999px 500px !important;
+        }
+    }
+
+    @media (min-width: 1536px) and (max-width: 2100px) {
+        .custom-rectangle-2 {
+            @apply ps-40;
+        }
+    }
+
+    .custom-rectangle-2 {
+        border-radius: 50%;
+    }
+
+    .adopt-dog:hover {
+        transform: scale(1.1);
+    }
+</style>
+
+<script>
+    document.querySelectorAll('.adopt-dog').forEach((el) => {
+        el.addEventListener('click', () => {
+            const element = el as HTMLElement;
+            // window.location.href = element.dataset.link;
+        });
+    });
+</script>

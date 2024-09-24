@@ -1,0 +1,54 @@
+---
+import Header from "~/components/Header.astro";
+
+import { ViewTransitions } from 'astro:transitions';
+
+import "~/styles/index.css";
+import 'aos/dist/aos.css';
+import Footer from "../components/Footer.astro";
+
+const { fixedHeader } = Astro.props;
+const { generator, site } = Astro;
+const description = "Adopta a tu próximo mejor amigo, o contribuye para que otros puedan conocerlos";
+---
+
+<html lang="es" class="h-full motion-safe:scroll-smooth" data-theme="dark">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <meta name="generator" content={generator} />
+
+        <title>Wagging Tails</title>
+        <meta name="description" content={description} />
+
+        <meta property="og:title" content="Astro" />
+        <meta property="og:type" content="website" />
+        <meta property="og:description" content={description} />
+        <meta property="og:url" content={site} />
+
+        <script is:inline src="/waypoints.min.js"></script>
+    </head>
+
+    <body class="h-full overflow-x-hidden bg-default text-base selection:bg-secondary selection:text-white">
+        <Header fixedHeader={fixedHeader} />
+
+        <ViewTransitions />
+
+        <slot name="splash" />
+
+        <div class="px-[100px] lg:px-[220px] py-20">
+            <slot />
+        </div>
+
+        <Footer fixedHeader={fixedHeader} />
+
+        <script>
+            import AOS from 'aos';
+
+            document.addEventListener('astro:page-load', () => {
+                AOS.init();
+            });
+        </script>
+    </body>
+</html>

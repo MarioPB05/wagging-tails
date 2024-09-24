@@ -1,0 +1,148 @@
+---
+import { Icon } from "astro-icon/components";
+
+const { fixedHeader = false } = Astro.props;
+const classes = fixedHeader ? "fixed-header" : "";
+const rootLink = fixedHeader ? "/#" : "#";
+---
+
+<header id="page-header" data-fixed={String(fixedHeader)} class:list={[
+    'absolute bottom-0 z-20 flex w-full items-center justify-between border-b border-transparent px-10 md:px-20 py-4 text-white cursor-white',
+    classes
+]}>
+    <a class="flex items-center gap-3 hover:!text-default cursor-secondary" href={rootLink}>
+        <Icon name="logo" class="size-10" />
+        <h1 class="font-bold text-2xl text-nowrap hidden sm:inline">Wagging Tails</h1>
+    </a>
+    <div>
+        <div class="flex items-center gap-6">
+            <nav class="hidden sm:block">
+                <ul class="flex items-center text-nowrap gap-6">
+                    <li class="animate-slideUp delay-100 cursor-secondary">
+                        <a class="cursor-secondary" href={`${rootLink}section-adopt`}>
+                            Adopta Ahora
+                        </a>
+                    </li>
+
+                    <li class="animate-slideUp delay-200">
+                        <a class="cursor-secondary" href={`${rootLink}section-about`}>
+                            Sobre Nosotros
+                        </a>
+                    </li>
+
+                    <li class="animate-slideUp delay-300 cursor-secondary">
+                        <a class="cursor-secondary" href={`${rootLink}section-contribution`}>
+                            Cómo Ayudar
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <button id="open-nav-button" type="button" class="btn sm:hidden cursor-secondary" aria-label="Navigation">
+                <Icon name="mdi:menu" class="size-8" />
+            </button>
+        </div>
+
+        <div id="menu-modal" class="modal hidden" aria-hidden="true">
+            <div class="fixed inset-0 px-8 py-4 text-default bg-primary">
+                <div class="space-y-4" role="dialog" aria-modal="true">
+                    <header class="text-right">
+                        <button id="close-nav-button" type="button" class="btn cursor-secondary" aria-label="Close navigation">
+                            <Icon name="mdi:close" class="size-8" />
+                        </button>
+                    </header>
+                    <div class="flex justify-center">
+                        <Icon name="logo" class="size-16" />
+                    </div>
+                    <nav>
+                        <ul class="flex flex-col">
+                            <li class="animate-slideUp delay-100 cursor-secondary">
+                                <a class="block py-4 text-center text-xl" href={`${rootLink}section-adopt`}>
+                                    Adopta Ahora
+                                </a>
+                            </li>
+
+                            <li class="animate-slideUp delay-200 cursor-secondary">
+                                <a class="block py-4 text-center text-xl" href={`${rootLink}section-about`}>
+                                    Sobre Nosotros
+                                </a>
+                            </li>
+
+                            <li class="animate-slideUp delay-300 cursor-secondary">
+                                <a class="block py-4 text-center text-xl" href={`${rootLink}section-contribution`}>
+                                    Cómo Ayudar
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<script>
+    import MicroModal from "micromodal";
+    import invariant from "tiny-invariant";
+
+    document.addEventListener('astro:page-load', () => {
+        const menuModalId = "menu-modal";
+
+        const header = document.querySelector("#page-header") as HTMLElement;
+        const page = document.documentElement;
+        const menu = document.querySelector(`#${menuModalId} ul`);
+        const openNavButton = document.querySelector("#open-nav-button");
+        const closeNavButton = document.querySelector("#close-nav-button");
+
+        invariant(header, "header should not be null");
+        invariant(menu, "menu should not be null");
+        invariant(openNavButton, "openNavButton should not be null");
+        invariant(closeNavButton, "closeNavButton should not be null");
+
+        const openMenu = () => {
+            MicroModal.show(menuModalId, { disableScroll: true });
+        };
+
+        const closeMenu = () => {
+            MicroModal.close(menuModalId);
+        };
+
+        openNavButton.addEventListener("click", openMenu);
+        closeNavButton.addEventListener("click", closeMenu);
+
+        menu.addEventListener("click", (event) => {
+            if ((event.target as HTMLElement).tagName === "A") {
+                closeMenu();
+            }
+        });
+
+        const fixedHeader = header.dataset.fixed === "true";
+
+        if (!fixedHeader) {
+            const calculateFixedHeader = () => {
+                const d = page.clientHeight - page.scrollTop - header.offsetHeight;
+                header.classList.toggle("fixed-header", d < 0);
+            }
+
+            document.addEventListener("scroll", calculateFixedHeader);
+        }
+    });
+</script>
+
+<noscript>
+    <style>
+        #open-nav-button {
+            display: none;
+        }
+    </style>
+</noscript>
+
+<style>
+    .fixed-header {
+        @apply fixed bottom-auto top-0;
+        @apply border-default bg-primary text-default;
+    }
+
+    .modal.is-open {
+        @apply block;
+    }
+</style>

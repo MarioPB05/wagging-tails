@@ -1,0 +1,49 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<section id="section-contribution" class="scroll-mt-24">
+    <h2 class="text-4xl text-secondary font-bold text-center 2xl:text-start">¿Cómo ayudar?</h2>
+
+    <dl class="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-4 gap-20 mt-14">
+        <div class="flex flex-col justify-center shadow relative items-center gap-4 p-6 text-center bg-primary w-[250px] h-[250px] rounded-xl justify-self-end 2xl:justify-self-start">
+            <dt class="mt-2 text-white text-[80px]">
+                <Icon name="mdi:heart" />
+            </dt>
+            <dd class="text-xl font-medium text-white">
+                Contribuye con una donación
+            </dd>
+            <div class="absolute w-[250px] h-[250px] bg-primary opacity-20 rotate-[-10deg] rounded-xl"></div>
+        </div>
+
+        <div class="flex flex-col justify-center shadow relative items-center gap-4 p-6 text-center bg-secondary w-[250px] h-[250px] rounded-xl">
+            <dt class="mt-2 text-white text-[80px]">
+                <Icon name="mdi:account-group" />
+            </dt>
+            <dd class="text-xl font-medium text-white">
+                Únete como voluntario
+            </dd>
+            <div class="absolute w-[250px] h-[250px] bg-secondary opacity-20 rotate-[10deg] rounded-xl"></div>
+        </div>
+
+        <div class="flex flex-col justify-center shadow relative items-center gap-4 p-6 text-center bg-primary w-[250px] h-[250px] rounded-xl justify-self-end 2xl:justify-self-start">
+            <dt class="mt-2 text-white text-[80px]">
+                <Icon name="mdi:bone" />
+            </dt>
+            <dd class="text-xl font-medium text-white">
+                Apadrina y apoya mensualmente
+            </dd>
+            <div class="absolute w-[250px] h-[250px] bg-primary opacity-20 rotate-[-100deg] rounded-xl"></div>
+        </div>
+
+        <div class="flex flex-col justify-center shadow relative items-center gap-4 p-6 text-center bg-secondary w-[250px] h-[250px] rounded-xl">
+            <dt class="mt-2 text-white text-[80px]">
+                <Icon name="mdi:share-variant" />
+            </dt>
+            <dd class="text-xl font-medium text-white">
+                Comparte nuestra misión
+            </dd>
+            <div class="absolute w-[250px] h-[250px] bg-secondary opacity-20 rotate-[100deg] rounded-xl"></div>
+        </div>
+    </dl>
+</section>
