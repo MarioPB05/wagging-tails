@@ -1,0 +1,26 @@
+:root {
+    --color-primary: #9470E1;
+    --color-secondary: #FF6F61;
+    --color-text: #FFF;
+    --color-text-offset: #333333;
+    --color-background: #F7F7F7;
+    --color-background-offset: #E0E0E0;
+    --color-border: #CCCCCC ;
+}
+
+.gradient-text {
+    @apply bg-clip-text text-transparent inline-block;
+    @apply bg-gradient-to-br from-[#FFC107] via-[#F29A3E] to-[#E57373];
+}
+
+body {
+    cursor: url('../assets/cursor-primary.png'), auto;
+}
+
+.cursor-white {
+    cursor: url('../assets/cursor-white.png'), auto;
+}
+
+.cursor-secondary {
+    cursor: url('../assets/cursor-secondary.png'), auto !important;
+}
